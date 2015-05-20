@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+'use strict';
+
+var LamassuConfig = require('lamassu-config');
+var config = new LamassuConfig();
+
+console.log('\nSetting up the StartWallet plugin.\n');
+console.log('Please enter your API credentials.\n');
+
+function updateDb(key, secret, password, callback) {
+  var newConfig = {
+    exchanges: {
+      plugins: {
+        current: {
+          ticker: 'startwallet',
+        }
+      }
+    }
+  };
+  config.mergeConfig(newConfig, callback);
+}

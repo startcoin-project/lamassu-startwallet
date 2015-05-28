@@ -1,8 +1,8 @@
 {
   "name": "lamassu-startwallet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "StartWallet ticker for lamassu-server",
-  "main": "ticker.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha"
   },

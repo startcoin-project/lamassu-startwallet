@@ -36,7 +36,7 @@ function checkCurrency(results, currency) {
 }
 
 
-var tickerPlugin = require('../ticker');
+var tickerPlugin = require('../lib/index').ticker;
 describe(tickerPlugin.NAME + ' Ticker', function() {
 
   // // NOTE: should be uncommented and adjusted when rate limiting is in place

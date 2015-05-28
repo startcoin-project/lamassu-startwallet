@@ -1,8 +1,8 @@
 {
   "name": "lamassu-startwallet",
-  "version": "1.0.4",
-  "description": "Lamassu StartWallet ticker",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "StartWallet ticker for lamassu-server",
+  "main": "ticker.js",
   "scripts": {
     "test": "mocha"
   },
@@ -11,9 +11,8 @@
     "url": "https://github.com/startcoin-project/lamassu-startwallet.git"
   },
   "keywords": [
-    "Lamassu",
-    "StartWallet",
     "StartCOIN",
+    "StartWallet",
     "Bitcoin"
   ],
   "author": "Luke Mitchell",
@@ -21,17 +20,13 @@
   "bugs": {
     "url": "https://github.com/startcoin-project/lamassu-startwallet/issues"
   },
-  "bin": {
-    "startwallet-setup": "./setup"
-  },
   "devDependencies": {
-    "chai": "^1.10.0",
-    "mocha": "^2.1.0"
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4"
   },
   "dependencies": {
-    "lodash": "^3.0.0",
-    "wreck": "^5.1.0",
-    "promptly": "~0.2.0",
-    "lamassu-config": "~1.0.0"
+    "async": "~0.2.10",
+    "lodash": "^2.4.1",
+    "wreck": "^3.0.0"
   }
 }

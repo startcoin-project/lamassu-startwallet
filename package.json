@@ -20,9 +20,11 @@
   "bugs": {
     "url": "https://github.com/startcoin-project/lamassu-startwallet/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "async": "~0.8.0",
+    "jsonquest": "git://github.com/lamassu/jsonquest"
+  },
   "devDependencies": {
-    "chai": "^1.9.1",
     "tap": "~0.4.8"
   }
 }

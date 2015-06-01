@@ -1,10 +1,10 @@
 {
   "name": "lamassu-startwallet",
-  "version": "1.0.1",
-  "description": "StartWallet ticker for lamassu-server",
+  "version": "0.1.0",
+  "description": "Lamassu Trade and Ticker for StartWallet",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "tap ./test"
   },
   "repository": {
     "type": "git",
@@ -20,13 +20,9 @@
   "bugs": {
     "url": "https://github.com/startcoin-project/lamassu-startwallet/issues"
   },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^1.9.1",
-    "mocha": "^1.21.4"
-  },
-  "dependencies": {
-    "async": "~0.2.10",
-    "lodash": "^2.4.1",
-    "wreck": "^3.0.0"
+    "tap": "~0.4.8"
   }
 }

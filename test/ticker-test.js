@@ -13,6 +13,20 @@
 */
 
 'use strict';
-var ticker = require('./ticker');
 
-module.exports.ticker = ticker;
+var test = require('tap').test;
+var ticker = require('../lib/index').ticker;
+
+test('Read ticker from StartWallet', function(t){
+  var startwallet = new ticker();
+  startwallet.ticker(function(err, result) {
+    t.plan(5);
+    t.equal(err, null, 'There should be no error');
+    t.notEqual(result, null, 'There should be a result');
+    t.equal(result.error, undefined, 'The result should contain no error');
+    t.notEqual(result["USD"], undefined, 'A rate should have been returned');
+    t.ok(parseFloat(result["USD"], 10), 'The rate should be a float');
+    t.end();
+  });
+});
+

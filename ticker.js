@@ -24,36 +24,88 @@ function getTickerUrls(currencies) {
 }
 
 function formatResponse(currencies, results, callback) {
-    var out = results.reduce(function (prev, current) {
-        // parse as JSON, if possible
-        // invalid JSON means a server error
-        var tmp;
-        try {
-            tmp = JSON.parse(current);
-        }
-        catch (ex) {
-            return prev;
-        }
-        current = tmp;
 
-        if (currencies.indexOf(current.code) !== -1) {
-            prev[current.code] = {
-                currency: current.code,
-                rates: {
-                    ask: current.rate,
-                    bid: current.rate
+    var out = {};
+    var tmp = null;
+
+    function addCurrency(currency, result) {
+        if (typeof result === 'undefined')
+            return;
+        out[currency] = {
+            currency: currency,
+            rates: {
+                ask: result.rate,
+                bid: result.rate
+            }
+        };
+    }
+
+    try {
+
+        if(results.length == 1){
+            results = JSON.parse(results[0]); // always only one request
+
+        }else{
+
+            for (var i in results) {
+                var is_JSON = results[i].match(/{/g);
+                if(is_JSON){
+                    tmp = JSON.parse(results[i]);
+                    addCurrency(tmp.code, tmp)
                 }
-            };
+
+            }
         }
 
-        return prev;
-    }, {});
 
-    // check if all requested currencies are present in response
+    } catch (e) {
+
+
+        var to_check = [];
+
+        if(Object.keys(results).length > 1){
+
+            for (var i in results) {
+                tmp = results[i];
+                var is_JSON = tmp.match(/{/g);
+                if(is_JSON){
+                    tmp = JSON.parse(tmp);
+                    to_check[tmp.code] = tmp
+                }
+
+            }
+            // is there a dody one in there?
+            for (var i in currencies) {
+                var currency = currencies[i];
+                if(to_check[currency] === undefined ){
+                    return callback(new Error('Unsupported currency invalid one in the request'));
+                }
+            }
+
+        }else{
+            return callback(new Error('Unsupported currency invalid json'));
+        }
+
+    }
+
+
+
+
+    if (currencies.length === 1)
+        addCurrency(currencies[0], results);
+
+    else
+        currencies.forEach(function(currency) {
+            addCurrency(currency, results[currency]);
+        });
+
     if (currencies.length !== Object.keys(out).length)
         return callback(new Error('Unsupported currency'));
 
+
     callback(null, out);
+
+
 }
 
 
@@ -69,7 +121,7 @@ exports.ticker = function ticker(currencies, callback) {
     // change each url on the list into a download job
     var downloadList = urls.map(function (url) {
         return function (cb) {
-            Wreck.get(url, {json: true}, function (err, res, payload) {
+            Wreck.get(url, function (err, res, payload) {
                 cb(err, payload);
             });
         };

@@ -1,32 +1,31 @@
 {
-  "name": "lamassu-startwallet",
-  "version": "1.0.1",
-  "description": "StartWallet ticker for lamassu-server",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/startcoin-project/lamassu-startwallet.git"
-  },
-  "keywords": [
-    "StartCOIN",
-    "StartWallet",
-    "Bitcoin"
-  ],
-  "author": "Luke Mitchell",
-  "license": "unlicense",
-  "bugs": {
-    "url": "https://github.com/startcoin-project/lamassu-startwallet/issues"
-  },
-  "devDependencies": {
-    "chai": "^1.9.1",
-    "mocha": "^1.21.4"
-  },
-  "dependencies": {
-    "async": "~0.2.10",
-    "lodash": "^2.4.1",
-    "wreck": "^3.0.0"
-  }
+    "name": "lamassu-startwallet",
+    "version": "1.0.3",
+    "description": "Lamassu ticker for Startwallet price index",
+    "main": "ticker.js",
+    "scripts": {
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/startcoin-project/lamassu-startwallet.git"
+    },
+    "keywords": [
+        "Lamassu",
+        "Bitcoin"
+    ],
+    "author": "Jamie Scott",
+    "license": "unlicense",
+    "bugs": {
+        "url": "https://github.com/startcoin-project/lamassu-startwallet/issues"
+    },
+    "devDependencies": {
+        "chai": "^1.9.1",
+        "mocha": "^1.21.4"
+    },
+    "dependencies": {
+        "async": "~0.2.10",
+        "lodash": "^2.4.1",
+        "wreck": "^3.0.0"
+    }
 }

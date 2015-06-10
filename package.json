@@ -2,7 +2,7 @@
     "name": "lamassu-startwallet",
     "version": "1.0.3",
     "description": "Lamassu ticker for Startwallet price index",
-    "main": "ticker.js",
+    "main": "index.js",
     "scripts": {
         "test": "mocha"
     },

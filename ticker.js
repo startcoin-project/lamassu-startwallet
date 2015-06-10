@@ -5,13 +5,18 @@ var Wreck = require('wreck');
 var async = require('async');
 
 
-exports.NAME = 'Startwallet';
-exports.SUPPORTED_MODULES = ['ticker'];
+
+
 var API_ENDPOINT = 'https://rates.startwallet.com/';
 var pluginConfig = {};
 
 
-exports.config = function config(localConfig) {
+function StartWalletTicker(options){	
+	this.NAME = options.NAME;
+	this.SUPPORTED_MODULES = options.SUPPORTED_MODULES;
+}
+
+StartWalletTicker.prototype.config = function config(localConfig) {
   if (localConfig) _.merge(pluginConfig, localConfig);
 };
 
@@ -108,7 +113,7 @@ function formatResponse(currencies, results, callback) {
 
 }
 
-exports.ticker = function ticker(currencies, callback) {
+StartWalletTicker.prototype.ticker = function ticker(currencies, callback) {
     if (typeof currencies === 'string')
         currencies = [currencies];
 
@@ -132,3 +137,14 @@ exports.ticker = function ticker(currencies, callback) {
         formatResponse(currencies, results, callback);
     });
 };
+
+module.exports.factory = function(options) {
+
+    var options = {};
+	options.SUPPORTED_MODULES = ['ticker'];
+	options.NAME = 'Startwallet';
+
+    return new StartWalletTicker(options);
+}
+module.exports.SUPPORTED_MODULES = ['ticker'];
+module.exports.NAME = 'Startwallet';

@@ -36,11 +36,11 @@ function checkCurrency(results, currency) {
 }
 
 
-var tickerPlugin = require('../index').ticker.factory();
-
+var tickerPlugin = require('../lib/index').ticker.factory();
 
 try {
-    var plugin = require('../index');
+    var plugin = require('../lib/index');
+
 } catch (_) {
     throw new Error(name + ' module is not installed. ' +
         'Try running \'npm install --save lamassu-' + name + '\' first');

@@ -56,6 +56,15 @@ if (!(plugin.SUPPORTED_MODULES instanceof Array))
         '\'SUPPORTED_MODULES\' constant');
 
 
+if (typeof plugin.NAME === 'undefined')
+    throw new Error('Startwallet fails to implement *recommended* \'NAME\' field');
+
+if (typeof plugin.config !== 'function') {
+    throw new Error('Startwallet fails to implement *recommended* \'config\' method');
+    plugin.config = function() {};
+} 
+
+
 describe(tickerPlugin.NAME + ' Ticker', function() {
 
   // // NOTE: should be uncommented and adjusted when rate limiting is in place

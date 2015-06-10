@@ -13,16 +13,13 @@ var pluginConfig = {};
 
 
 var StartWalletTicker = function(localConfig) {
-    if (localConfig) _.merge(pluginConfig, localConfig);
+
 };
 
 StartWalletTicker.factory = function factory(config) {
     return new StartWalletTicker(config);
 };
 
-StartWalletTicker.prototype.config = function config(localConfig) {
-    if (localConfig) _.merge(pluginConfig, localConfig);
-};
 
 function getTickerUrls(currencies) {
     var urls = currencies.map(function (currency) {
@@ -143,3 +140,7 @@ StartWalletTicker.prototype.ticker = function ticker(currencies, callback) {
 
 
 module.exports.ticker = StartWalletTicker;
+
+module.exports.config = function config(localConfig) {
+    if (localConfig) _.merge(pluginConfig, localConfig);
+};

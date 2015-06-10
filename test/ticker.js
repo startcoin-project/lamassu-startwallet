@@ -36,7 +36,7 @@ function checkCurrency(results, currency) {
 }
 
 
-var tickerPlugin = require('../ticker').factory();
+var tickerPlugin = require('../ticker').ticker.factory();
 
 
 try {

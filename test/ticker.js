@@ -36,7 +36,26 @@ function checkCurrency(results, currency) {
 }
 
 
-var tickerPlugin = require('../ticker');
+var tickerPlugin = require('../ticker').factory();
+
+
+try {
+    var plugin = require('../ticker');
+} catch (_) {
+    throw new Error(name + ' module is not installed. ' +
+        'Try running \'npm install --save lamassu-' + name + '\' first');
+}
+
+if (typeof plugin.SUPPORTED_MODULES !== 'undefined') {
+    if (plugin.SUPPORTED_MODULES === 'string')
+        plugin.SUPPORTED_MODULES = [plugin.SUPPORTED_MODULES];
+}
+
+if (!(plugin.SUPPORTED_MODULES instanceof Array))
+    throw new Error('Startwallet fails to implement *required* ' +
+        '\'SUPPORTED_MODULES\' constant');
+
+
 describe(tickerPlugin.NAME + ' Ticker', function() {
 
   // // NOTE: should be uncommented and adjusted when rate limiting is in place
